@@ -6,7 +6,7 @@
     <div class="row">
          <div class="col-3 pull-right ">
               <a class="btn btn-large btn-sm btn-primary" style="margin-right: 20px;
-margin-bottom: 5px;" href="{{path('admin.caissier.add')}}" role="button">Nouveau</a>
+margin-bottom: 5px;" href="{{path('admin.partenaire.add')}}" role="button">Nouveau</a>
         </div>
 
           
@@ -19,38 +19,45 @@ margin-bottom: 5px;" href="{{path('admin.caissier.add')}}" role="button">Nouveau
       <th>Login</th>
        <th>Profil</th>
        <th>Etat</th>
-        <th>Action</th>
+       <th>Action</th>
+        <th>Comptes</th>
+
     </thead>
     <tbody>
-{% for caissier in caissiers %}
+{% for partenaire in partenaires %}
 
 
     <tr>
         
-      <td>{{ caissier.nom}}</td>
+      <td>{{ partenaire.user.nom}}</td>
       <td>
-            {{ caissier.prenom}}
+            {{ partenaire.user.prenom}}
       </td>
       <td>
-            {{ caissier.login}}
+            {{ partenaire.user.login}}
       </td>
           <td>
-            {{ caissier.profil.libelle}}
+            {{ partenaire.user.profil.libelle}}
       </td>
 
       <td>
-           <a class="btn btn-large btn-xs btn-success" href="#" role="button">{{ caissier.etat}}</a>
+           <a class="btn btn-large btn-xs btn-success" href="#" role="button">{{ partenaire.user.etat}}</a>
            
       </td>
       <td>
-      {% if caissier.etat=='Actif'%}
-        <a class="btn btn-large btn-xs btn-warning" href="{{path('admin.caissier.bloquer',{id:caissier.id,etat:'Inactif'})}}" role="button">Désactiver</a>
+      {% if partenaire.user.etat=='Actif'%}
+        <a class="btn btn-large btn-xs btn-warning" href="{{path('admin.partenaire.bloquer',{id:partenaire.id,etat:'Inactif'})}}" role="button">Désactiver</a>
         {% else %}
-        <a class="btn btn-large btn-xs btn-success" href="{{path('admin.caissier.bloquer',{id:caissier.id,etat:'Actif'})}}"role="button">Activer</a>
+        <a class="btn btn-large btn-xs btn-success" href="{{path('admin.partenaire.bloquer',{id:partenaire.id,etat:'Actif'})}}"role="button">Activer</a>
       {% endif %}
          
          
           
+           
+      </td>
+
+      <td>
+           <a class="btn btn-large btn-xs btn-success" href="{{path('admin.partenaire.showCompte',{id:partenaire.id})}}" role="button">Mes Comptes</a>
            
       </td>
      

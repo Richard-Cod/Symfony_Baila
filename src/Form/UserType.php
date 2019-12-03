@@ -19,6 +19,8 @@ class UserType extends AbstractType
             ->add('prenom')
             ->add('login')
             ->add('password',PasswordType::class)
+           
+            ->add('profil')
             ->add('etat',ChoiceType::class, [
                 'choices'  => [
                     'Actif' => "Actif",
@@ -28,7 +30,6 @@ class UserType extends AbstractType
             ]
             
             )
-            ->add('profil')
             
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
         ;

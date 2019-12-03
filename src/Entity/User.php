@@ -47,6 +47,11 @@ class User
      */
     private $profil;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Partenaire", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $partenaire;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,23 @@ class User
     public function setProfil(?Profil $profil): self
     {
         $this->profil = $profil;
+
+        return $this;
+    }
+
+    public function getPartenaire(): ?Partenaire
+    {
+        return $this->partenaire;
+    }
+
+    public function setPartenaire(Partenaire $partenaire): self
+    {
+        $this->partenaire = $partenaire;
+
+        // set the owning side of the relation if necessary
+        if ($partenaire->getUser() !== $this) {
+            $partenaire->setUser($this);
+        }
 
         return $this;
     }
